@@ -1,39 +1,51 @@
 <%- model_class = Tweet -%>
-
-<div class ="row-fluid">
-<div class = "span4">
-
-<h3><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-                                 :default => "New #{model_class.model_name.human}") %></h3>
+<div class = "row-fluid">
 
 
 <%= render :partial => 'form' %>
-<ul>
-            <li><%= link_to "following", user_following_path(current_user) %></li>
-            <li><%= link_to "followers", user_followers_path(current_user) %></li>
-          </ul>
+</div>
+<div class ="row-fluid">
+<div class = "span3">
+<p>
+            <%= link_to "following", user_following_path(current_user) %>
+</p>
+<p>
+<%= link_to "followers", user_followers_path(current_user) %>
+</p>
 </div>
 
-<div class = "span8">
+<div class = "span9 ">
 <h3>NewsFeed</h3>
 <table class="table table-striped">
  
   <tbody>
-<% @users.each do |user|
+<%
+=begin
+ @users.each do |user|
 	if @friendlist.include?user.id
 		tweets = user.tweets
-		tweets.each do |tweet| %>
+		tweets.each do |tweet| 
+=end
+%>
+<%		@tweetlist.each do |tweet|
+	%>
       <tr>
-        <td><p><h4><%= user.name %></h4></p>
-        	<p><h4><%=  tweet.tweetContent %></h3></p>
+        <td><p><h4><% @users.each do |user|
+        			if user.id == tweet.user_id
+        				%>
+        				<%= link_to user.name, user_path(user) %>
+        			<% end 
+        				end%>
+             </h4></p>
+        	<p><h4><%=  tweet.tweetContent %></h4></p>
         	<p><%= tweet.created_at %></p>
         </td>
      </tr>
     <% end 
-	 end
-	end
+	
 %>
 </tbody>
 </table>
 </div>
 </div>
+

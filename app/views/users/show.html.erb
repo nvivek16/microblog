@@ -1,33 +1,44 @@
 <%- model_class = User -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%= @user.name %></h1>
 </div>
-<%= flash[:message] %>
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @user.email %></dd>
-  
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @user.name %></dd>
-</dl>
+<div class = "row-fluid">
+<div class = "span3">
+<p>			
 
-<h2>Following</h2>
-<ul>
-  <% for friendship in @user.friendships %>
-    <li>
-      <%=h friendship.friend.name %>
-      (<%= link_to "remove", friendship, :method => :delete %>)
-    </li>
-  <% end %>
-</ul>
-
-<p><%= link_to "Find Friends", users_path %></p>
-
-<h2>Followers</h2>
-<ul>
-  <% for user in @user.inverse_friends %>
-    <li><%=h user.name %></li>
-  <% end %>
-</ul>
+        <%= @following %>    <%= link_to "following", user_following_path(current_user) %>
+</p>
+<p>
+ <%= @followers %> <%= link_to "followers", user_followers_path(current_user) %>
+</p>
+</div>
+<div class = "span9">
+<%- model_class = Tweet -%>
+<div class="page-header">
+  <h3><%=t '.title', :default => model_class.model_name.human.pluralize %></h3>
+</div>
+<table class="table table-striped">
+ 
+  <tbody>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        
+        <td><p><h3><%=  tweet.tweetContent %></h3></p>
+        <p><%= tweet.created_at %></p>
+        <p>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_user_tweet_path(tweet.user_id, tweet.id), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      user_tweet_path(tweet.user_id, tweet.id),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </p>
+        </td>
+     </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
 

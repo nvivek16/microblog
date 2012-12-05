@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!,  :except => [:show, :index]
 
   def index
     @user = User.find(params[:user_id])

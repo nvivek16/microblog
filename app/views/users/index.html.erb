@@ -6,14 +6,11 @@
 <table class="table table-striped">
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, nil %></td>
+      <tr><% if !@friendlist.include?user.id %>
+        <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.email %></td>
-        <% if @friendlist.include?user.id %>
         
-        <td><%= link_to "unfollow", friendship_path(user), :method => :delete %></td>
-        <% else %>
-        <td><%= link_to "follow", friendships_path(:friend_id => user), :method => :post %></td>
+          <td><%= link_to "follow", friendships_path(:friend_id => user), :method => :post %></td>
         <% end %>    
       </tr>
     <% end %>

@@ -27,9 +27,9 @@
         <a class="brand" href="#">Micro Blog</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "tweets", user_tweets_path(current_user) %></li>
+            <li><%= link_to "my profile", user_path(current_user) %></li>
             <li><%= link_to "dashboard", user_dashboard_path(current_user) %></li>
-            <li><%= link_to "find users", users_path %></li>
+            <li><%= link_to "find people", users_path %></li>
           </ul>
         </div>
       </div>
