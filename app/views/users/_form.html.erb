@@ -1,0 +1,12 @@
+<%= form_for [@user, @tweet], :html => { :class => 'form-horizontal' } do |f| %>
+  
+
+    
+      <%= f.text_area :tweetContent, :class => 'text_area', :rows => 5%>
+    
+
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                user_tweets_path, :class => 'btn' %>
+  
+<% end %>

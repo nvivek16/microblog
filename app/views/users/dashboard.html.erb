@@ -1,0 +1,39 @@
+<%- model_class = Tweet -%>
+
+<div class ="row-fluid">
+<div class = "span4">
+
+<h3><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h3>
+
+
+<%= render :partial => 'form' %>
+<ul>
+            <li><%= link_to "following", user_following_path(current_user) %></li>
+            <li><%= link_to "followers", user_followers_path(current_user) %></li>
+          </ul>
+</div>
+
+<div class = "span8">
+<h3>NewsFeed</h3>
+<table class="table table-striped">
+ 
+  <tbody>
+<% @users.each do |user|
+	if @friendlist.include?user.id
+		tweets = user.tweets
+		tweets.each do |tweet| %>
+      <tr>
+        <td><p><h4><%= user.name %></h4></p>
+        	<p><h4><%=  tweet.tweetContent %></h3></p>
+        	<p><%= tweet.created_at %></p>
+        </td>
+     </tr>
+    <% end 
+	 end
+	end
+%>
+</tbody>
+</table>
+</div>
+</div>

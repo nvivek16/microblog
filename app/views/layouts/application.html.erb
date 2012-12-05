@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Microblog1</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class = "pull-right" id="user_nav">
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.name %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+  <% end %>
+</div>
+<div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Micro Blog</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "tweets", user_tweets_path(current_user) %></li>
+            <li><%= link_to "dashboard", user_dashboard_path(current_user) %></li>
+            <li><%= link_to "find users", users_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class = "container-fluid">
+
+<%= yield %>
+</div>
+</div>
+</body>
+</html>
