@@ -44,4 +44,4 @@ gem "jquery-rails", "~> 2.1.4"
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug'
+gem 'ruby-debug19'
