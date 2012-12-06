@@ -18,9 +18,34 @@ class TweetsController < ApplicationController
   end
   def create
       @user = User.find(params[:user_id])
-      @tweet = @user.tweets.new(params[:tweet])
+      @tweet = @user.tweets.new(params[:tweet]) 
+         
+      @friends = current_user.friendships
+      @friendlist = [@user.id]
+      @friends.each do |friend|
+      @friendlist << friend.friend_id 
+      end
+
+      @users = User.all
+
+      @tweetlist = []
+      @users.each do |user|
+          if @friendlist.include?user.id 
+            user.tweets.each do |tweet|
+              @tweetlist << tweet
+            end
+          end  
+
+        end
+
+  
+
+    @tweetlist.sort!{ |a,b| b.created_at <=> a.created_at } 
       if @tweet.save
-        redirect_to(user_dashboard_path)
+        respond_to do |format|
+        format.html { redirect_to(user_dashboard_path) }
+        format.js
+        end 
       else
         render :action => 'new'
       end
@@ -38,7 +63,7 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
-    flash[:notice] = "Successfully destroyed tweet."
+    redirect_to(user_path(current_user))
   end
 
   def edit

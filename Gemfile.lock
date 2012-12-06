@@ -141,7 +141,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise (= 1.4.7)
-  jquery-rails
+  jquery-rails (~> 2.1.4)
   json
   less-rails
   paperclip (~> 2.7)

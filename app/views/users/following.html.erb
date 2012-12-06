@@ -1,9 +1,13 @@
-<h2>Following</h2>
-<ul>
+<h2>Following </h2><h5>(<%=@user.name%>)</h5>
+
+<table class="table table-striped">
+  <tbody>
   <% for friendship in @user.friendships %>
-    <li>
-      <%= link_to friendship.friend.name, user_path(friendship.friend) %>
-      
-    </li>
+   
+     <tr><td> <%= link_to friendship.friend.name, user_path(friendship.friend) %></td>
+     	 <% if friendship.user_id == current_user.id %>
+      <td><%= link_to "unfollow", friendship_path(friendship), :method => :delete %></td></tr>
+   <%end%>
   <% end %>
-</ul>
+</tbody>
+</table>

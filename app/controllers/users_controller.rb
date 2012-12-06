@@ -12,10 +12,12 @@ end
 def show
 	@user = User.find(params[:id])
 	 @tweets = @user.tweets
-	 @friends = current_user.friendships
+	 @friends = @user.friendships
+	 @current_friends = current_user.friendships
 	 @following = @friends.size
-	 @inverse_friends = current_user.inverse_friends
+	 @inverse_friends = @user.inverse_friends
 	 @followers = @inverse_friends.size
+	 @flag = true
 end
 
 def dashboard

@@ -3,6 +3,19 @@
 <div class="pull-right">
   <h1><%= @user.name %></h1>
   <i><h5><%= @user.bio %></h5></i>
+  
+  	<% @current_friends.each do |current_friends|
+  			if @user.id == current_friends.friend_id
+  				@flag = false
+  			end
+  		end
+  		if @user.id == current_user.id
+  			@flag = false
+  		end
+  		if @flag == true
+  	 %>
+  	<%= link_to "follow", friendships_path(:friend_id => @user.id), :method => :post , :id => current_user.id%>
+  	  	<% end %>
  </div>
 
  <%= image_tag @user.photo.url(:small) %><br>
@@ -13,10 +26,10 @@
 <div class = "span3">
 <p>			
 
-        <%= @following %>    <%= link_to "following", user_following_path(current_user) %>
+        <%= @following %>    <%= link_to "following", user_following_path(@user) %>
 </p>
 <p>
- <%= @followers %> <%= link_to "followers", user_followers_path(current_user) %>
+ <%= @followers %> <%= link_to "followers", user_followers_path(@user) %>
 </p>
 </div>
 <div class = "span9">

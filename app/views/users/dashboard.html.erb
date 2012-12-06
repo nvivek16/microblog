@@ -14,39 +14,9 @@
 <%= link_to "Followers", user_followers_path(current_user) %>
 </p>
 </div>
+<div class = "span9 " id="feed">
 
-<div class = "span9 ">
-<h3>NewsFeed</h3>
-<table class="table table-striped">
- 
-  <tbody>
-<%
-=begin
- @users.each do |user|
-	if @friendlist.include?user.id
-		tweets = user.tweets
-		tweets.each do |tweet| 
-=end
-%>
-<%		@tweetlist.each do |tweet|
-	%>
-      <tr>
-        <td><p><h4><% @users.each do |user|
-        			if user.id == tweet.user_id
-        				%>
-        				<%= link_to user.name, user_path(user) %>
-        			<% end 
-        				end%>
-             </h4></p>
-        	<p><h4><%=  tweet.tweetContent %></h4></p>
-        	<p><%= tweet.created_at %></p>
-        </td>
-     </tr>
-    <% end 
-	
-%>
-</tbody>
-</table>
+<%= render :partial => 'dashboard' %>
 </div>
 </div>
 

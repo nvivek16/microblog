@@ -10,7 +10,7 @@
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.email %></td>
         
-          <td><%= link_to "follow", friendships_path(:friend_id => user), :method => :post %></td>
+          <td><%= link_to "follow", friendships_path(:friend_id => user), :method => :post , :id => user.id%></td>
         <% end %>    
       </tr>
     <% end %>

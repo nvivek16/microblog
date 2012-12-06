@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+jQuery.ajaxSetup({ 
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+});
+
+$(document).ready(function(){
+
+
+		$("#new_tweet").submit(function(){
+				$.post($(this).attr("action"), $(this).serialize(), null, "script");
+				console.log("hi");
+				return false;
+		});
+
+
+});
+

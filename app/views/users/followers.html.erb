@@ -1,6 +1,6 @@
 
 
-<h2>Followers</h2>
+<h2>Followers </h2><h5>(<%=@user.name%>)</h5>
 <ul>
   <% for user in @user.inverse_friends %>
     <li><%= link_to user.name, user_path(user) %></li>
