@@ -4,8 +4,9 @@ gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+group :development do
+	gem 'sqlite3'
+end
 
 gem 'json'
 
@@ -45,3 +46,6 @@ gem "jquery-rails", "~> 2.1.4"
 
 # To use debugger
 
+group :production do
+  gem 'pg', '0.12.2'
+end
