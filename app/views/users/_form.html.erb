@@ -1,10 +1,10 @@
 <%= form_for [@user, @tweet], :html => { :class => 'form-horizontal' } do |f| %>
   
-<div class="field span8 offset3">
+<div class="field span6">
     
-      <%= f.text_area :tweetContent, :class => 'text_area',:rows => 5, :class =>"field span8"%>
+      <%= f.text_area :tweetContent, :class => 'text_area',:rows => 5, :class =>"field span10"%>
     </div>
-<div class="field span3 offset9">
+<div class="field span3" style="padding-top:50px">
     <%= f.submit nil, :class => 'btn btn-primary' %>
   </div>
   

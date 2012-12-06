@@ -26,9 +26,11 @@ group :assets do
   gem 'therubyracer'
   gem 'twitter-bootstrap-rails'
 end
+gem "paperclip", "~> 2.7"
 
 gem 'jquery-rails'
 
+gem "jquery-rails", "~> 2.1.4"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
